@@ -1,0 +1,12 @@
+# Changelog
+
+All notable changes to Exhausted Model. Versions before 2.1.0 belong to the original [CCSeva](https://github.com/Iamshankhadeep/ccseva).
+
+## 2.1.0 — 2026-11-13
+
+First Exhausted Model release, forked from CCSeva 2.0.2.
+
+- Renamed the app to Exhausted Model: menu bar, windows, notifications, bundle id `com.snupk.exhaustedmodel`.
+- Settings now live in `~/.exhausted-model/` (CCSeva's `~/.ccseva/` is not read).
+- Notifications pass text to `osascript` as arguments instead of escaping it into the script.
+- Version now comes from the `VERSION` file.

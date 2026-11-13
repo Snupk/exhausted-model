@@ -1,5 +1,16 @@
 # CLAUDE.md
 
+## Exhausted Model fork — workflow (read first)
+
+This repo is Exhausted Model, a fork of CCSeva. The app that ships is the native Swift one in `swift/`; the Electron code below is legacy.
+
+For every change:
+1. Bump `VERSION` (semver: fix → patch, feature/visible change → minor).
+2. Add an entry to `CHANGELOG.md` under the new version.
+3. Rebuild and relaunch: `pkill -x ExhaustedModel; cd swift && ./scripts/build-app.sh && open dist/ExhaustedModel.app`.
+4. Commit and push to `origin main`.
+
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview

@@ -4,7 +4,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-APP_VERSION="${EXHAUSTED_MODEL_VERSION:-2.0.0}"
+APP_VERSION="${EXHAUSTED_MODEL_VERSION:-$(cat ../VERSION)}"
 APP_VERSION="${APP_VERSION#v}"
 if [[ ! "$APP_VERSION" =~ ^[0-9]+(\.[0-9]+){0,2}$ ]]; then
 	echo "Invalid EXHAUSTED_MODEL_VERSION: $APP_VERSION" >&2
