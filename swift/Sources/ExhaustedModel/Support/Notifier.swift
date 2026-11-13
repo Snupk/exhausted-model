@@ -90,12 +90,11 @@ final class Notifier {
     }
 
     private static func deliverViaOsascript(title: String, body: String) {
-        let escapedBody = body.replacingOccurrences(of: "\"", with: "\\\"")
-        let escapedTitle = title.replacingOccurrences(of: "\"", with: "\\\"")
-        let script = "display notification \"\(escapedBody)\" with title \"\(escapedTitle)\""
+        // Pass text as argv instead of splicing it into the script, so no escaping is needed.
+        let script = "on run argv\ndisplay notification (item 1 of argv) with title (item 2 of argv)\nend run"
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/osascript")
-        process.arguments = ["-e", script]
+        process.arguments = ["-e", script, body, title]
         try? process.run()
     }
 }
