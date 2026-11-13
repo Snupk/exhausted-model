@@ -87,18 +87,11 @@ body:
   - type: input
     id: version
     attributes:
-      label: CCSeva Version
-      description: What version of CCSeva are you using?
-      placeholder: e.g. 1.0.0
+      label: Exhausted Model Version
+      description: What version of Exhausted Model are you using? (Settings tab or `brew info exhausted-model`)
+      placeholder: e.g. 2.2.0
     validations:
       required: true
-
-  - type: input
-    id: node-version
-    attributes:
-      label: Node.js Version
-      description: What version of Node.js are you using? (if building from source)
-      placeholder: e.g. 18.17.0
 
   - type: input
     id: claude-version

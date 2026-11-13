@@ -24,8 +24,8 @@
 <!-- How did you test these changes? -->
 
 - [ ] Manual testing completed
-- [ ] Build passes (`npm run build`)
-- [ ] Linting passes (`npm run check`)
+- [ ] App builds (`cd swift && ./scripts/build-app.sh`)
+- [ ] Tests pass (`cd swift && swift test`)
 
 ## Related Issues
 

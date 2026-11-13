@@ -1,7 +1,7 @@
-# CCSeva (native Swift)
+# Exhausted Model — Swift app
 
 A lightweight, native macOS menu bar app that monitors Claude Code usage in real time — a
-Swift/AppKit/SwiftUI replacement for the Electron CCSeva app in the repository root.
+Native Swift/AppKit/SwiftUI menu bar app.
 No Node, no Electron, no external dependencies: one ~2 MB binary.
 
 ## Build
@@ -11,16 +11,16 @@ Requires Xcode 16 / Swift 6 toolchain, macOS 14+ (built and tested on arm64).
 ```bash
 cd swift
 swift build                 # debug build
-.build/debug/CCSeva --diagnose   # headless functional check (see below)
+.build/debug/ExhaustedModel --diagnose   # headless functional check (see below)
 
-./scripts/build-app.sh      # release build → dist/CCSeva.app (ad-hoc signed)
-open dist/CCSeva.app
+./scripts/build-app.sh      # release build → dist/ExhaustedModel.app (ad-hoc signed)
+open dist/ExhaustedModel.app
 ```
 
 The app is a menu-bar-only app (`LSUIElement`): look for the usage percentage in the
 menu bar. Left-click opens the popover; right-click shows Refresh / Quit.
 
-`CCSeva --diagnose` skips the UI entirely and runs the JSONL scan, 5-hour block
+`ExhaustedModel --diagnose` skips the UI entirely and runs the JSONL scan, 5-hour block
 computation, weekly aggregation and a limits-endpoint probe, printing a summary.
 Use it to sanity-check the data pipeline.
 
@@ -29,7 +29,7 @@ Use it to sanity-check the data pipeline.
 SwiftPM executable package (no .xcodeproj), Swift 5 language mode, macOS 14+.
 
 ```
-Sources/CCSeva/
+Sources/ExhaustedModel/
 ├── App/
 │   └── AppDelegate.swift      # NSStatusItem + NSPopover(NSHostingController) shell
 ├── Data/
@@ -48,7 +48,7 @@ Sources/CCSeva/
 │   ├── DirectoryCredentialStore.swift # separate device credential Keychain item
 │   └── DirectoryIdentity.swift # stable installation ID + app/device metadata
 ├── Support/
-│   ├── Settings.swift         # ~/.ccseva/settings.json (shared with Electron app)
+│   ├── Settings.swift         # ~/.exhausted-model/settings.json
 │   ├── Notifier.swift         # UNUserNotificationCenter / osascript thresholds
 │   ├── Formatting.swift       # ISO8601 parsing, token/cost/duration formatting
 │   └── Diagnose.swift         # --diagnose headless check
@@ -108,30 +108,28 @@ The Dashboard also shows a pace prediction: with live data it uses the slope of 
 two utilization readings; otherwise the local burn rate — "At current pace you'll hit
 the session limit at HH:mm" when the projection crosses 100% before the reset.
 
-### Settings compatibility
+### Settings
 
-`~/.ccseva/settings.json` is read and written in the same format as the Electron app
-(`plan`, `customTokenLimit`, `timezone`, `resetHour`, `menuBarDisplayMode`
-percentage/cost/alternate, `menuBarCostSource` today/sessionWindow). Unknown keys are
-preserved on save, so the two apps can share the file. `refreshIntervalSeconds` is a
-Swift-app extension key.
+`~/.exhausted-model/settings.json` keys: `plan`, `customTokenLimit`, `timezone`, `resetHour`,
+`menuBarDisplayMode` (percentage/cost/alternate), `menuBarCostSource` (today/sessionWindow),
+`refreshIntervalSeconds`. Unknown keys are preserved on save.
 
 ### Optional directory sync
 
 The Settings tab can pair the app with `claudecode.directory` through a short-lived
 browser verification code. The resulting device credential is stored under the separate
-Keychain service `com.iamshankhadeep.ccseva.directory`. After each local scan, CCSeva
+Keychain service `com.snupk.exhaustedmodel.directory`. After each local scan, Exhausted Model
 coalesces usage into day/model buckets and sends those aggregates after a short debounce.
 Uploads are replacement upserts, so rescanning the same transcript does not double count.
 
 Claude OAuth credentials and raw transcript data never enter the directory sync payload.
-Set `CCSEVA_DIRECTORY_URL` only when testing against a local or staging server.
+Set `EXHAUSTED_MODEL_DIRECTORY_URL` only when testing against a local or staging server.
 
 ### Notifications
 
 Warning at ≥70% and critical at ≥90% of the 5-hour window, 5-minute cooldown, and only
 when the status *worsens*. Uses `UNUserNotificationCenter` when running from
-`dist/CCSeva.app`; a bare `swift run` binary can't use that API, so it falls back to
+`dist/ExhaustedModel.app`; a bare `swift run` binary can't use that API, so it falls back to
 `osascript -e 'display notification ...'`.
 
 ## Limitations

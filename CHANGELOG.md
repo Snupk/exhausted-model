@@ -1,6 +1,11 @@
 # Changelog
 
-All notable changes to Exhausted Model. Versions before 2.1.0 belong to the original [CCSeva](https://github.com/Iamshankhadeep/ccseva).
+All notable changes to Exhausted Model.
+
+## Unreleased
+
+- Removed the legacy Electron/TypeScript app; the repository is Swift-only now.
+- New README with Homebrew install; CI and issue templates no longer mention Node.
 
 ## 2.2.0 — 2026-11-13
 
