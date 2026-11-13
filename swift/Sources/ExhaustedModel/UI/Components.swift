@@ -34,7 +34,7 @@ struct UtilizationRing: View {
 
             Text(resetText)
                 .font(.firaCode(9))
-                .foregroundStyle(Color.neutral500)
+                .foregroundStyle(Color.textTertiary)
 
             ThemedPill(text: isLive ? "live" : "estimated",
                        color: isLive ? .safeFrom : .claudePrimary)

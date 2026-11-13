@@ -124,7 +124,7 @@ struct SettingsView: View {
                 .textSelection(.enabled)
             Text("Limit gauges use Claude Code's unofficial OAuth usage endpoint; when unreachable, Exhausted Model falls back to local estimates from your transcripts.")
                 .font(.firaCode(10))
-                .foregroundStyle(Color.neutral500)
+                .foregroundStyle(Color.textTertiary)
         }
         .warmCard()
     }
@@ -200,7 +200,7 @@ struct SettingsView: View {
 
             Text("Only daily/model token totals and estimated cost are uploaded. Prompts, responses, transcripts, project paths, and Claude credentials never leave this Mac.")
                 .font(.firaCode(9))
-                .foregroundStyle(Color.neutral500)
+                .foregroundStyle(Color.textTertiary)
         }
         .warmCard()
     }
@@ -215,7 +215,7 @@ struct SettingsView: View {
 
     private var directoryStatusColor: Color {
         switch store.directoryState {
-        case .disconnected: return .neutral500
+        case .disconnected: return .textTertiary
         case .pairing: return .warnFrom
         case .connected: return .safeFrom
         }

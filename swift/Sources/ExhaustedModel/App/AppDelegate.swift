@@ -66,8 +66,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let popover = NSPopover()
         popover.behavior = .transient
         popover.contentSize = NSSize(width: 600, height: 600)
-        popover.contentViewController = NSHostingController(
-            rootView: RootView().environmentObject(store)
+        popover.appearance = NSAppearance(named: .darkAqua)
+        popover.contentViewController = PopoverHostingController(
+            rootView: AnyView(RootView().environmentObject(store))
         )
         self.popover = popover
 
@@ -146,5 +147,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc private func quit() {
         NSApp.terminate(nil)
+    }
+}
+
+/// Paints the popover frame (including its arrow) in the app background color,
+/// so the arrow doesn't show the system's light popover material.
+private final class PopoverHostingController: NSHostingController<AnyView> {
+    private var frameBackground: NSView?
+
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        guard frameBackground == nil, let frameView = view.window?.contentView?.superview else { return }
+        let background = NSView(frame: frameView.bounds)
+        background.wantsLayer = true
+        background.layer?.backgroundColor = NSColor(Color.neutral900).cgColor
+        background.autoresizingMask = [.width, .height]
+        frameView.addSubview(background, positioned: .below, relativeTo: nil)
+        frameBackground = background
     }
 }

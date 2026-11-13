@@ -2,6 +2,12 @@
 
 All notable changes to Exhausted Model. Versions before 2.1.0 belong to the original [CCSeva](https://github.com/Iamshankhadeep/ccseva).
 
+## 2.2.0 — 2026-11-13
+
+- The popover arrow now matches the dark window instead of showing up white.
+- The menu bar shows the percentage by default (was alternating with cost).
+- Muted labels are lighter (`#948D88`) so they pass WCAG AA contrast on the dark background.
+
 ## 2.1.0 — 2026-11-13
 
 First Exhausted Model release, forked from CCSeva 2.0.2.

@@ -104,7 +104,7 @@ struct DashboardView: View {
                 .foregroundStyle(Color.neutral400)
             Text(sub)
                 .font(.firaCode(10))
-                .foregroundStyle(Color.neutral500)
+                .foregroundStyle(Color.textTertiary)
                 .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity)
@@ -182,7 +182,7 @@ struct DashboardView: View {
                             .multilineTextAlignment(.center)
                         Text("Estimate uses plan limit: \(Format.tokens(store.localTokenLimit)) tokens")
                             .font(.firaCode(10))
-                            .foregroundStyle(Color.neutral500)
+                            .foregroundStyle(Color.textTertiary)
                             .multilineTextAlignment(.center)
                     }
                     .frame(maxWidth: .infinity)
@@ -336,7 +336,7 @@ struct DashboardView: View {
             if models.isEmpty {
                 Text("No model usage data available")
                     .font(.firaCode(11))
-                    .foregroundStyle(Color.neutral500)
+                    .foregroundStyle(Color.textTertiary)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
             } else {

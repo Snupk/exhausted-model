@@ -37,7 +37,8 @@ extension Color {
     // Semantic text aliases
     static let textPrimary = Color.neutral100
     static let textSecondary = Color.neutral400
-    static let textTertiary = Color.neutral500
+    // Lighter than neutral500 so small muted labels pass WCAG AA (≥4.5:1) on the dark cards.
+    static let textTertiary = Color(hex: 0x948D88)
 }
 
 // MARK: - Usage status

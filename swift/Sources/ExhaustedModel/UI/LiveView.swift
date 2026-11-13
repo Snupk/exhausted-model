@@ -60,7 +60,7 @@ struct LiveView: View {
                     Text("\(Format.duration(block.endTime.timeIntervalSinceNow)) left")
                 }
                 .font(.firaCode(10))
-                .foregroundStyle(Color.neutral500)
+                .foregroundStyle(Color.textTertiary)
             }
 
             HStack(spacing: 12) {
@@ -115,7 +115,7 @@ struct LiveView: View {
             Text(value).font(.firaCode(14, weight: .bold)).foregroundStyle(Color.neutral100)
                 .lineLimit(1).minimumScaleFactor(0.7)
             if let sub {
-                Text(sub).font(.firaCode(9)).foregroundStyle(Color.neutral500).lineLimit(1)
+                Text(sub).font(.firaCode(9)).foregroundStyle(Color.textTertiary).lineLimit(1)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

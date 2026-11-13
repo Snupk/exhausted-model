@@ -39,7 +39,7 @@ struct AppSettings: Equatable {
     var resetHour: Int = 0
     var plan: Plan = .auto
     var customTokenLimit: Int?
-    var menuBarDisplayMode: MenuBarDisplayMode = .alternate
+    var menuBarDisplayMode: MenuBarDisplayMode = .percentage
     var menuBarCostSource: CostSource = .today
     /// Fallback polling interval (seconds). Swift-only extension key.
     var refreshIntervalSeconds: Int = 60

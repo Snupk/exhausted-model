@@ -24,7 +24,7 @@ struct AnalyticsView: View {
                     if snap.hasUnpricedModels {
                         Text("Some models unpriced: \(snap.unknownModels.map(Format.shortModelName).joined(separator: ", "))")
                             .font(.firaCode(10))
-                            .foregroundStyle(Color.neutral500)
+                            .foregroundStyle(Color.textTertiary)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
