@@ -7,6 +7,7 @@ All notable changes to Exhausted Model.
 - Removed the legacy Electron/TypeScript app; the repository is Swift-only now.
 - New README with Homebrew install; CI and issue templates no longer mention Node.
 - Homebrew install line includes `brew trust`, required by Homebrew 7+.
+- Shorter README with a single screenshot (`screenshots/screenshot.png`).
 
 ## 2.2.0 — 2026-11-13
 
