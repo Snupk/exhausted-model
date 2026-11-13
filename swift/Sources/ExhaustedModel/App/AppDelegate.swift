@@ -20,14 +20,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 ("AppIcon", "png"),
             ]
             for (name, extensionName) in requiredResources {
-                guard CCSevaResources.bundle.url(forResource: name, withExtension: extensionName) != nil else {
+                guard ExhaustedModelResources.bundle.url(forResource: name, withExtension: extensionName) != nil else {
                     FileHandle.standardError.write(
                         Data("Missing bundled resource: \(name).\(extensionName)\n".utf8)
                     )
                     exit(1)
                 }
             }
-            print("CCSeva packaged resources verified")
+            print("Exhausted Model packaged resources verified")
             exit(0)
         }
         let app = NSApplication.shared
@@ -48,7 +48,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         let fontCount = FiraCode.registerFonts()
         FileHandle.standardError.write(
-            Data("[CCSeva] Registered \(fontCount) Fira Code font face(s)\n".utf8)
+            Data("[Exhausted Model] Registered \(fontCount) Fira Code font face(s)\n".utf8)
         )
 
         let store = UsageStore()
@@ -129,7 +129,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(refreshItem)
         menu.addItem(.separator())
 
-        let quitItem = NSMenuItem(title: "Quit CCSeva", action: #selector(quit), keyEquivalent: "q")
+        let quitItem = NSMenuItem(title: "Quit Exhausted Model", action: #selector(quit), keyEquivalent: "q")
         quitItem.target = self
         menu.addItem(quitItem)
 

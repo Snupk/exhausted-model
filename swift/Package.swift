@@ -2,21 +2,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "CCSeva",
+    name: "ExhaustedModel",
     platforms: [.macOS(.v14)],
     products: [
-        .executable(name: "CCSeva", targets: ["CCSeva"])
+        .executable(name: "ExhaustedModel", targets: ["ExhaustedModel"])
     ],
     targets: [
         .executableTarget(
-            name: "CCSeva",
-            path: "Sources/CCSeva",
+            name: "ExhaustedModel",
+            path: "Sources/ExhaustedModel",
             resources: [.process("Resources")]
         ),
         .testTarget(
-            name: "CCSevaTests",
-            dependencies: ["CCSeva"],
-            path: "Tests/CCSevaTests"
+            name: "ExhaustedModelTests",
+            dependencies: ["ExhaustedModel"],
+            path: "Tests/ExhaustedModelTests"
         ),
     ]
 )

@@ -1,6 +1,6 @@
 import Foundation
 import XCTest
-@testable import CCSeva
+@testable import ExhaustedModel
 
 final class DirectoryClientTests: XCTestCase {
     override func tearDown() {
@@ -59,7 +59,7 @@ final class DirectoryClientTests: XCTestCase {
 
         MockURLProtocol.requestHandler = { request in
             XCTAssertEqual(request.url?.path, "/api/sync/v1/usage")
-            XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "Bearer ccseva_test")
+            XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "Bearer exhaustedmodel_test")
             let body = try Self.requestBody(request)
             let text = try XCTUnwrap(String(data: body, encoding: .utf8))
             XCTAssertTrue(text.contains("claude-sonnet-4"))
@@ -71,7 +71,7 @@ final class DirectoryClientTests: XCTestCase {
         }
 
         let credential = DirectoryCredential(
-            accessToken: "ccseva_test",
+            accessToken: "exhaustedmodel_test",
             deviceId: "device-1",
             accountName: "Test",
             accountEmail: "test@example.com"

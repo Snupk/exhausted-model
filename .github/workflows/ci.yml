@@ -42,7 +42,7 @@ jobs:
       run: npm test
       continue-on-error: true  # Tests might not exist yet
     
-    # Building a DMG mounts /Volumes/CCSeva and is flaky on shared GitHub
+    # Building a DMG mounts /Volumes/ExhaustedModel and is flaky on shared GitHub
     # runners. CI only needs to prove Electron can assemble the application;
     # release workflows remain responsible for producing distributable DMGs.
     - name: Package application directory (macOS only)
@@ -73,26 +73,26 @@ jobs:
       working-directory: swift
       run: swift test
 
-    - name: Assemble CCSeva.app
+    - name: Assemble ExhaustedModel.app
       working-directory: swift
       run: ./scripts/build-app.sh
 
     - name: Verify app bundle and resources
       working-directory: swift
       run: |
-        test -d dist/CCSeva.app
-        test -d dist/CCSeva.app/Contents/Resources/CCSeva_CCSeva.bundle
-        dist/CCSeva.app/Contents/MacOS/CCSeva --verify-resources
+        test -d dist/ExhaustedModel.app
+        test -d dist/ExhaustedModel.app/Contents/Resources/ExhaustedModel_ExhaustedModel.bundle
+        dist/ExhaustedModel.app/Contents/MacOS/ExhaustedModel --verify-resources
 
     - name: Smoke test (--diagnose)
       working-directory: swift
-      run: .build/release/CCSeva --diagnose
+      run: .build/release/ExhaustedModel --diagnose
 
     - name: Upload app bundle
       uses: actions/upload-artifact@v4
       with:
-        name: CCSeva-app-debug
-        path: swift/dist/CCSeva.app
+        name: ExhaustedModel-app-debug
+        path: swift/dist/ExhaustedModel.app
 
   security:
     runs-on: ubuntu-latest

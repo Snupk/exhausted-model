@@ -1,13 +1,13 @@
 import Foundation
 
 /// Resolves SwiftPM resources in both execution modes:
-/// - packaged app: Contents/Resources/CCSeva_CCSeva.bundle
+/// - packaged app: Contents/Resources/ExhaustedModel_ExhaustedModel.bundle
 /// - direct SwiftPM executable/tests: generated Bundle.module location
-enum CCSevaResources {
+enum ExhaustedModelResources {
     static let bundle: Bundle = {
         if let resourceURL = Bundle.main.resourceURL,
            let packagedBundle = Bundle(
-               url: resourceURL.appendingPathComponent("CCSeva_CCSeva.bundle", isDirectory: true)
+               url: resourceURL.appendingPathComponent("ExhaustedModel_ExhaustedModel.bundle", isDirectory: true)
            )
         {
             return packagedBundle

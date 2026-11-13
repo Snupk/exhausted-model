@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Preferences tab, warm-themed. Writes through to ~/.ccseva/settings.json
+/// Preferences tab, warm-themed. Writes through to ~/.exhausted-model/settings.json
 /// (shared with the Electron app; unknown keys are preserved).
 struct SettingsView: View {
     @EnvironmentObject private var store: UsageStore
@@ -90,8 +90,8 @@ struct SettingsView: View {
             .tint(.claudePrimary)
 
             Text(launchAtLoginFailed
-                ? "Couldn't update the login item. Move CCSeva to /Applications and try again."
-                : "Start CCSeva automatically when you log in.")
+                ? "Couldn't update the login item. Move Exhausted Model to /Applications and try again."
+                : "Start Exhausted Model automatically when you log in.")
                 .font(.firaCode(10))
                 .foregroundStyle(launchAtLoginFailed ? Color.warnFrom : Color.neutral400)
         }
@@ -122,7 +122,7 @@ struct SettingsView: View {
                 .font(.firaCode(10))
                 .foregroundStyle(Color.neutral400)
                 .textSelection(.enabled)
-            Text("Limit gauges use Claude Code's unofficial OAuth usage endpoint; when unreachable, CCSeva falls back to local estimates from your transcripts.")
+            Text("Limit gauges use Claude Code's unofficial OAuth usage endpoint; when unreachable, Exhausted Model falls back to local estimates from your transcripts.")
                 .font(.firaCode(10))
                 .foregroundStyle(Color.neutral500)
         }

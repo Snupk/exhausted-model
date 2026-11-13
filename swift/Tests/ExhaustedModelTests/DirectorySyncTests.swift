@@ -1,5 +1,5 @@
 import XCTest
-@testable import CCSeva
+@testable import ExhaustedModel
 
 final class DirectorySyncTests: XCTestCase {
     func testSyncBucketsAggregateByLocalDayAndModel() throws {

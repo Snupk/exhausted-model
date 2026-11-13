@@ -9,7 +9,7 @@ final class FileWatcher {
     /// also the FSEvents callback queue — start/stop synchronize onto it so a
     /// teardown can never race an in-flight callback using passUnretained(self).
     private var stream: FSEventStreamRef?
-    private let queue = DispatchQueue(label: "com.iamshankhadeep.ccseva.fsevents")
+    private let queue = DispatchQueue(label: "com.snupk.exhaustedmodel.fsevents")
     private let paths: [String]
     private let debounceInterval: TimeInterval
     private let onChange: () -> Void

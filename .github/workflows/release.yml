@@ -29,10 +29,10 @@ jobs:
       working-directory: swift
       run: swift build -c release
 
-    - name: Assemble CCSeva.app
+    - name: Assemble ExhaustedModel.app
       working-directory: swift
       env:
-        CCSEVA_VERSION: ${{ github.ref_name }}
+        EXHAUSTED_MODEL_VERSION: ${{ github.ref_name }}
       run: ./scripts/build-app.sh
 
     - name: Import Developer ID certificate
@@ -42,7 +42,7 @@ jobs:
         CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
       run: |
         set -euo pipefail
-        KEYCHAIN_PATH="$RUNNER_TEMP/ccseva-signing.keychain-db"
+        KEYCHAIN_PATH="$RUNNER_TEMP/exhaustedmodel-signing.keychain-db"
         KEYCHAIN_PASSWORD="$(openssl rand -base64 24)"
         CERT_PATH="$RUNNER_TEMP/developer-id.p12"
 
@@ -73,14 +73,14 @@ jobs:
       run: |
         set -euo pipefail
         codesign --force --options runtime --timestamp \
-          --sign "$SIGNING_IDENTITY" swift/dist/CCSeva.app
-        codesign --verify --deep --strict --verbose=2 swift/dist/CCSeva.app
+          --sign "$SIGNING_IDENTITY" swift/dist/ExhaustedModel.app
+        codesign --verify --deep --strict --verbose=2 swift/dist/ExhaustedModel.app
 
     - name: Package artifacts (pre-notarization)
       run: |
         set -euo pipefail
-        ZIP="CCSeva-${{ github.ref_name }}-arm64.zip"
-        ditto -c -k --keepParent swift/dist/CCSeva.app "$ZIP"
+        ZIP="ExhaustedModel-${{ github.ref_name }}-arm64.zip"
+        ditto -c -k --keepParent swift/dist/ExhaustedModel.app "$ZIP"
         echo "ARTIFACT_ZIP=$ZIP" >> "$GITHUB_ENV"
 
     - name: Notarize and staple
@@ -96,43 +96,43 @@ jobs:
           --team-id "$APPLE_TEAM_ID" \
           --password "$APPLE_APP_SPECIFIC_PASSWORD" \
           --wait
-        xcrun stapler staple swift/dist/CCSeva.app
+        xcrun stapler staple swift/dist/ExhaustedModel.app
 
     - name: Re-package stapled app
       if: ${{ env.HAS_SIGNING == 'true' && env.HAS_NOTARIZATION == 'true' }}
       run: |
         set -euo pipefail
         rm -f "$ARTIFACT_ZIP"
-        ditto -c -k --keepParent swift/dist/CCSeva.app "$ARTIFACT_ZIP"
+        ditto -c -k --keepParent swift/dist/ExhaustedModel.app "$ARTIFACT_ZIP"
 
     - name: Create DMG
       run: |
         set -euo pipefail
-        DMG="CCSeva-${{ github.ref_name }}-arm64.dmg"
-        hdiutil create -volname CCSeva -srcfolder swift/dist/CCSeva.app -ov -format UDZO "$DMG"
+        DMG="ExhaustedModel-${{ github.ref_name }}-arm64.dmg"
+        hdiutil create -volname ExhaustedModel -srcfolder swift/dist/ExhaustedModel.app -ov -format UDZO "$DMG"
         echo "ARTIFACT_DMG=$DMG" >> "$GITHUB_ENV"
 
     - name: Compose release body
       run: |
         set -euo pipefail
         {
-          echo "## CCSeva ${{ github.ref_name }} (native Swift app)"
+          echo "## Exhausted Model ${{ github.ref_name }} (native Swift app)"
           echo ""
           echo "This is the native Swift macOS menu bar app (Apple Silicon / arm64)."
           echo ""
           echo "### Install"
           echo ""
-          echo "Download \`${ARTIFACT_DMG}\` (or \`${ARTIFACT_ZIP}\`), then drag **CCSeva** to your Applications folder."
+          echo "Download \`${ARTIFACT_DMG}\` (or \`${ARTIFACT_ZIP}\`), then drag **Exhausted Model** to your Applications folder."
           echo ""
           if [ "${HAS_SIGNING}" = "true" ] && [ "${HAS_NOTARIZATION}" = "true" ]; then
             echo "This build is signed with a Developer ID and notarized by Apple."
           elif [ "${HAS_SIGNING}" = "true" ]; then
             echo "This build is signed with a Developer ID but is not notarized."
           else
-            echo "> **Note:** This build is **not** notarized. On first launch, right-click **CCSeva** and choose **Open**, or remove the quarantine flag with:"
+            echo "> **Note:** This build is **not** notarized. On first launch, right-click **Exhausted Model** and choose **Open**, or remove the quarantine flag with:"
             echo ">"
             echo "> \`\`\`sh"
-            echo "> xattr -dr com.apple.quarantine /Applications/CCSeva.app"
+            echo "> xattr -dr com.apple.quarantine /Applications/ExhaustedModel.app"
             echo "> \`\`\`"
           fi
           echo ""
@@ -145,22 +145,22 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: ccseva-${{ github.ref_name }}
+        name: exhausted-model-${{ github.ref_name }}
         path: |
-          CCSeva-${{ github.ref_name }}-arm64.zip
-          CCSeva-${{ github.ref_name }}-arm64.dmg
+          ExhaustedModel-${{ github.ref_name }}-arm64.zip
+          ExhaustedModel-${{ github.ref_name }}-arm64.dmg
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
-          CCSeva-${{ github.ref_name }}-arm64.zip
-          CCSeva-${{ github.ref_name }}-arm64.dmg
+          ExhaustedModel-${{ github.ref_name }}-arm64.zip
+          ExhaustedModel-${{ github.ref_name }}-arm64.dmg
         draft: false
         prerelease: ${{ contains(github.ref, 'beta') || contains(github.ref, 'alpha') || contains(github.ref, 'rc') }}
         generate_release_notes: true
-        name: CCSeva ${{ github.ref_name }}
+        name: Exhausted Model ${{ github.ref_name }}
         body_path: release-body.md
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

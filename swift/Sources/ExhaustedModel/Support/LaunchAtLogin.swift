@@ -27,7 +27,7 @@ enum LaunchAtLogin {
             return true
         } catch {
             FileHandle.standardError.write(Data(
-                "[CCSeva] launch-at-login \(enabled ? "register" : "unregister") failed: \(error)\n".utf8
+                "[Exhausted Model] launch-at-login \(enabled ? "register" : "unregister") failed: \(error)\n".utf8
             ))
             return false
         }

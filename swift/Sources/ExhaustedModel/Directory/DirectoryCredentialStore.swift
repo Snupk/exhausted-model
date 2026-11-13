@@ -11,7 +11,7 @@ struct DirectoryCredential: Codable, Equatable {
 /// Stores only the claudecode.directory device credential. Claude's own OAuth
 /// credential is read by a separate component and is never copied into this item.
 final class DirectoryCredentialStore {
-    private let service = "com.iamshankhadeep.ccseva.directory"
+    private let service = "com.snupk.exhaustedmodel.directory"
     private let account = "sync"
 
     func load() -> DirectoryCredential? {

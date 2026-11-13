@@ -1,6 +1,6 @@
 import Foundation
 
-/// `CCSeva --diagnose`: headless functional check. Runs the JSONL scan, block
+/// `ExhaustedModel --diagnose`: headless functional check. Runs the JSONL scan, block
 /// computation and weekly aggregation synchronously, probes the limits endpoint,
 /// prints a summary and exits. Used to verify the data pipeline without
 /// launching the UI.
@@ -10,7 +10,7 @@ enum Diagnose {
 
         Task.detached {
             let roots = UsageDataSource.discoverRoots()
-            print("CCSeva diagnose")
+            print("Exhausted Model diagnose")
             print("===============")
             print("Data roots: \(roots.isEmpty ? "(none found)" : roots.map(\.path).joined(separator: ", "))")
 

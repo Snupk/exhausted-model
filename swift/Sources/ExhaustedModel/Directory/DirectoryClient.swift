@@ -64,7 +64,7 @@ struct DirectoryClient {
     }
 
     static var configuredBaseURL: URL {
-        guard let value = ProcessInfo.processInfo.environment["CCSEVA_DIRECTORY_URL"],
+        guard let value = ProcessInfo.processInfo.environment["EXHAUSTED_MODEL_DIRECTORY_URL"],
               let url = URL(string: value), ["http", "https"].contains(url.scheme?.lowercased() ?? "")
         else { return productionURL }
         return url

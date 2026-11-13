@@ -1,25 +1,25 @@
 #!/bin/bash
-# Builds CCSeva.app (arm64, release) into swift/dist/.
+# Builds ExhaustedModel.app (arm64, release) into swift/dist/.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-APP_VERSION="${CCSEVA_VERSION:-2.0.0}"
+APP_VERSION="${EXHAUSTED_MODEL_VERSION:-2.0.0}"
 APP_VERSION="${APP_VERSION#v}"
 if [[ ! "$APP_VERSION" =~ ^[0-9]+(\.[0-9]+){0,2}$ ]]; then
-	echo "Invalid CCSEVA_VERSION: $APP_VERSION" >&2
+	echo "Invalid EXHAUSTED_MODEL_VERSION: $APP_VERSION" >&2
 	exit 1
 fi
 
 swift build -c release --arch arm64
 BIN_DIR="$(swift build -c release --arch arm64 --show-bin-path)"
-BIN_PATH="$BIN_DIR/CCSeva"
+BIN_PATH="$BIN_DIR/ExhaustedModel"
 
-APP="dist/CCSeva.app"
+APP="dist/ExhaustedModel.app"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
-cp "$BIN_PATH" "$APP/Contents/MacOS/CCSeva"
+cp "$BIN_PATH" "$APP/Contents/MacOS/ExhaustedModel"
 
 # App icon (shared with the Electron build) so Finder/Dock show the real mark.
 if [ -f assets/icon.icns ]; then
@@ -29,9 +29,9 @@ elif [ -f ../assets/icon.icns ]; then
 fi
 
 # Keep the SwiftPM resource bundle in the standard signed-app resource directory.
-# CCSevaResources resolves this location in packaged builds and falls back to
+# ExhaustedModelResources resolves this location in packaged builds and falls back to
 # Bundle.module when running directly through SwiftPM.
-RESOURCE_BUNDLE="$BIN_DIR/CCSeva_CCSeva.bundle"
+RESOURCE_BUNDLE="$BIN_DIR/ExhaustedModel_ExhaustedModel.bundle"
 if [ -d "$RESOURCE_BUNDLE" ]; then
 	cp -R "$RESOURCE_BUNDLE" "$APP/Contents/Resources/"
 else
@@ -44,11 +44,13 @@ cat > "$APP/Contents/Info.plist" <<PLIST
 <plist version="1.0">
 <dict>
 	<key>CFBundleExecutable</key>
-	<string>CCSeva</string>
+	<string>ExhaustedModel</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.iamshankhadeep.ccseva</string>
+	<string>com.snupk.exhaustedmodel</string>
 	<key>CFBundleName</key>
-	<string>CCSeva</string>
+	<string>Exhausted Model</string>
+	<key>CFBundleDisplayName</key>
+	<string>Exhausted Model</string>
 	<key>CFBundleIconFile</key>
 	<string>AppIcon</string>
 	<key>CFBundlePackageType</key>

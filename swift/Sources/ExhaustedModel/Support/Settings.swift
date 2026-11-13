@@ -1,6 +1,6 @@
 import Foundation
 
-/// User preferences, persisted to ~/.ccseva/settings.json in the exact format the
+/// User preferences, persisted to ~/.exhausted-model/settings.json in the exact format the
 /// Electron app uses, so both apps can share the file. Unknown JSON keys are
 /// preserved on save.
 struct AppSettings: Equatable {
@@ -41,7 +41,7 @@ struct AppSettings: Equatable {
     var customTokenLimit: Int?
     var menuBarDisplayMode: MenuBarDisplayMode = .alternate
     var menuBarCostSource: CostSource = .today
-    /// Fallback polling interval (seconds). CCSeva-Swift extension key.
+    /// Fallback polling interval (seconds). Swift-only extension key.
     var refreshIntervalSeconds: Int = 60
 
     /// Token limit used ONLY for the local-estimation fallback when the server
@@ -72,7 +72,7 @@ final class SettingsManager {
     private var rawDictionary: [String: Any] = [:]
 
     init() {
-        let dir = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(".ccseva")
+        let dir = FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent(".exhausted-model")
         settingsURL = dir.appendingPathComponent("settings.json")
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
     }

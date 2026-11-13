@@ -108,7 +108,7 @@ struct EmptyStateView: View {
             Text("No Claude Code data found")
                 .font(.firaCode(15, weight: .semibold))
                 .foregroundStyle(Color.neutral100)
-            Text("CCSeva reads transcripts from ~/.claude/projects.\nUse Claude Code at least once, then refresh.")
+            Text("Exhausted Model reads transcripts from ~/.claude/projects.\nUse Claude Code at least once, then refresh.")
                 .font(.firaCode(11))
                 .foregroundStyle(Color.neutral400)
                 .multilineTextAlignment(.center)

@@ -51,7 +51,7 @@ struct RootView: View {
         HStack(spacing: 12) {
             AppIconImage(size: 32)
             VStack(alignment: .leading, spacing: 1) {
-                Text("CCSeva")
+                Text("Exhausted Model")
                     .font(.firaCode(18, weight: .bold))
                     .foregroundStyle(Gradients.claudeText)
                 Text("Track API usage")
@@ -89,7 +89,7 @@ struct RootView: View {
             }
             .buttonStyle(.plain)
             .onHover { hoverQuit = $0 }
-            .help("Quit CCSeva")
+            .help("Quit Exhausted Model")
         }
     }
 

@@ -66,7 +66,7 @@ final class OAuthLimitsProvider: LimitsProvider {
         if !loggedShapeOnce {
             loggedShapeOnce = true
             FileHandle.standardError.write(
-                Data("CCSeva limits response keys: \(object.keys.sorted())\n".utf8))
+                Data("Exhausted Model limits response keys: \(object.keys.sorted())\n".utf8))
         }
         #endif
 

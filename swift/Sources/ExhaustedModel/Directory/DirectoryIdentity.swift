@@ -1,7 +1,7 @@
 import Foundation
 
 enum DirectoryIdentity {
-    private static let installationKey = "ccseva.directory.installation-id"
+    private static let installationKey = "exhaustedmodel.directory.installation-id"
 
     static var installationId: String {
         if let existing = UserDefaults.standard.string(forKey: installationKey), !existing.isEmpty {
