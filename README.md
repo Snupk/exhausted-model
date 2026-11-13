@@ -7,10 +7,10 @@ A native macOS menu bar app that shows how much of your Claude Code limit is lef
 Paste into Terminal (Apple Silicon, macOS 14+):
 
 ```sh
-brew install --cask snupk/tap/exhausted-model
+brew tap snupk/tap && brew trust snupk/tap && brew install --cask exhausted-model
 ```
 
-Update later with `brew upgrade --cask exhausted-model`.
+Homebrew 7+ only installs from taps you trust, hence `brew trust`. Update later with `brew upgrade --cask exhausted-model`.
 
 ## Screenshots
 
