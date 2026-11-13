@@ -1,4 +1,6 @@
-# CCSeva 🤖
+# Exhausted Model
+
+> Fork of [CCSeva](https://github.com/Iamshankhadeep/ccseva) by [@Iamshankhadeep](https://github.com/Iamshankhadeep), MIT licensed. All credit for the original app goes to its authors.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub release](https://img.shields.io/github/release/Iamshankhadeep/ccseva.svg)](https://github.com/Iamshankhadeep/ccseva/releases)
